@@ -11,16 +11,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .then((response) => {
       //Step 2: Log Data and see what you are getting back as a response
       //Loops through results and finds the names of the restaurants
-      for (i = 0; i < response.data.results.length; i++) {
-        createResultCard(response.data.results[i])
-      }
+      // for (i = 0; i < response.data.results.length; i++) {
+      //   createResultCard(response.data.results[i])
+      // }
+
+      // response.data.results.forEach((result) => createResultCard(result))
+      response.data.results.forEach(createResultCard)
     })
 })
 
 function createResultCard(result) {
-  const test = document.createElement('p')
+  let test = document.createElement('p')
   test.innerText = result.name
-  document.getElementById('cardArea').appendChild(test)
+
+  let cardArea = document.getElementById('cardArea')
+  cardArea.appendChild(test)
 }
 
 //   <div class="card">
