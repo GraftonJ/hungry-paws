@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         createResultCard(response.data.results[i])
       }
     })
-    
-  function createResultCard(result) {
-    const test = document.createElement('p')
-    test.innerText = result.name
-    document.getElementById('cardArea').appendChild(test)
-  }
 })
+
+function createResultCard(result) {
+  const test = document.createElement('p')
+  test.innerText = result.name
+  document.getElementById('cardArea').appendChild(test)
+}
 
 //   <div class="card">
 //     <div class="card-image waves-effect waves-block waves-light">
