@@ -1,15 +1,8 @@
 // //Below URL is a Text Searcg that returns address, name, open_now, photos, placeID, pricelevel, rating, and type such as restaurant, bar, cafe
 // https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+boulder&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
-const cardContainer = document.createElement('div')
-cardContainer.className = "card"
-const cardImage = document.createElement('div')
-cardImage.className = "card-image waves-effect waves-block waves-light"
-const test = document.createElement('p')
-test.innerText = 'Hello'
 
 document.addEventListener('DOMContentLoaded', (event) => {
   //Step 0: Ensure event listener works
-  console.log('here')
 
   //Step 1: fetch some data from a server. axios? OMDBAPI
   let location = 'lakeland'
@@ -19,14 +12,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
       //Step 2: Log Data and see what you are getting back as a response
       //Loops through results and finds the names of the restaurants
       for (i = 0; i < response.data.results.length; i++) {
-        createResultCard()
+        createResultCard(response.data.results[i])
       }
     })
-  function createResultCard() {
+    
+  function createResultCard(result) {
+    const test = document.createElement('p')
+    test.innerText = result.name
     document.getElementById('cardArea').appendChild(test)
-    // document.getElementById('cardArea').appendChild(cardContainer)
-    //Find the newly created Card div and append the card-image div
-    //document.getElementsByClassName('card').appendChild(cardImage)
   }
 })
 
