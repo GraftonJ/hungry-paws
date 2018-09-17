@@ -11,21 +11,54 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .then((response) => {
       //Step 2: Log Data and see what you are getting back as a response
       //Loops through results and finds the names of the restaurants
-      // for (i = 0; i < response.data.results.length; i++) {
-      //   createResultCard(response.data.results[i])
-      // }
-
-      // response.data.results.forEach((result) => createResultCard(result))
       response.data.results.forEach(createResultCard)
     })
 })
 
 function createResultCard(result) {
-  let test = document.createElement('p')
-  test.innerText = result.name
-
+  //Create top-level card div
+  let cardContainer = document.createElement('div')
+  cardContainer.className = "card"
+  //Append the card div to the cardArea
   let cardArea = document.getElementById('cardArea')
-  cardArea.appendChild(test)
+  cardArea.appendChild(cardContainer)
+  //Create card image div
+  let cardImage = document.createElement('div')
+  cardImage.className = "card-image waves-effect waves-block waves-light"
+  //Append the card image to the card divider
+  cardContainer.appendChild(cardImage)
+  //Create image tag with class and source
+  let image = document.createElement('img')
+  image.className = 'activator'
+  image.src = 'https://images.unsplash.com/photo-1516755594799-4e41b3066883?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a2b5482b62d0693252e21032b56fc326&auto=format&fit=crop&w=1050&q=80'
+  //Append the image to the cardImage
+  cardImage.appendChild(image)
+  //create card-content div
+  let cardContent = document.createElement('div')
+  cardContent.className = 'card-content'
+  //Append card-content div to cardContainer div
+  cardContainer.appendChild(cardContent)
+  //Create Span and append to the card-content div. Trouble with inserting the Name and the i tag within the span
+  let contentSpan = document.createElement('span')
+  contentSpan.className = 'card-title activator grey-text text-darken-4'
+  cardContent.appendChild(contentSpan)
+  // //create p tag with link and append to card-content divider
+  let resultLink = document.createElement('p')
+  resultLink.innerText = 'Link to Website here'
+  cardContent.appendChild(resultLink)
+
+  //Create card-reveal div and append to cardContainer
+  let cardReveal = document.createElement('div')
+  cardReveal.className = 'card-reveal'
+  cardContainer.appendChild(cardReveal)
+  //Create span and append to cardReveal
+  let revealSpan = document.createElement('span')
+  revealSpan.className = 'card-title activator grey-text text-darken-4'
+  cardReveal.appendChild(revealSpan)
+  //Create P element and append to cardReveal
+  let revealContent = document.createElement('p')
+  revealContent.innerText = 'Here is some more information about this product that is only revealed once clicked on.'
+  cardReveal.appendChild(revealContent)
 }
 
 //   <div class="card">
