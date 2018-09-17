@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //Step 0: Ensure event listener works
 
   //Step 1: fetch some data from a server.
-  let location = 'lakeland'
+  let location = 'boulder'
   let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
   axios.get(url)
     .then((response) => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       response.data.results.forEach(createResultCard)
 
       function createResultCard(result) {
-        let photoReference = result.photos.photo_reference
+        let photoReference = result.photos[0]['photo_reference']
         //Create top-level card div
         let cardContainer = document.createElement('div')
         cardContainer.className = "card"
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         //Create image tag with class and source
         let image = document.createElement('img')
         image.className = 'activator'
-        image.src = `https://maps.googleapis.com/maps/api/place/photo?maxheight=700&photoreference=${photoReference}=${apiKey}`
+        image.src = `https://maps.googleapis.com/maps/api/place/photo?maxheight=700&photoreference=${photoReference}&key=${apiKey}`
         //Append the image to the cardImage
         cardImage.appendChild(image)
         //create card-content div
@@ -72,3 +72,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     })
 })
+
+//https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&photoreference=CmRaAAAAwduffRfO922yJkTuX-hrZEOWkSDUkh9qM7kjaHEjl_s_Yah7fH9tC-2SRaCr8bSkQ39HOfRxYSbHMQotJsjpArEo6nN5kIo3kqpSJ6HRfFTSxOaZeLBX5sNQg8uwKL1MEhCVYpYzz6MiiM07V4O4Ue1KGhTHG2gbTSgY2L_rNbiESVN9k02w4g&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
