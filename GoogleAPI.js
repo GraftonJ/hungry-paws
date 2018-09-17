@@ -38,10 +38,15 @@ function createResultCard(result) {
   cardContent.className = 'card-content'
   //Append card-content div to cardContainer div
   cardContainer.appendChild(cardContent)
-  //Create Span and append to the card-content div. Trouble with inserting the Name and the i tag within the span
+  //Create Span and append to the card-content div. Create i tag and append to contentSpan
   let contentSpan = document.createElement('span')
   contentSpan.className = 'card-title activator grey-text text-darken-4'
+  contentSpan.innerText = 'Restaurant Name'
   cardContent.appendChild(contentSpan)
+  let iContent = document.createElement('i')
+  iContent.className = "material-icons right"
+  iContent.innerText = 'more_vert'
+  contentSpan.appendChild(iContent)
   // //create p tag with link and append to card-content divider
   let resultLink = document.createElement('p')
   resultLink.innerText = 'Link to Website here'
@@ -51,10 +56,15 @@ function createResultCard(result) {
   let cardReveal = document.createElement('div')
   cardReveal.className = 'card-reveal'
   cardContainer.appendChild(cardReveal)
-  //Create span and append to cardReveal
+  //PENDING: Create span and append to cardReveal
   let revealSpan = document.createElement('span')
   revealSpan.className = 'card-title activator grey-text text-darken-4'
+  revealSpan.innerText = 'Card Title'
   cardReveal.appendChild(revealSpan)
+  let iReveal = document.createElement('i')
+  iReveal.className = "material-icons right"
+  iReveal.innerText = 'close'
+  revealSpan.appendChild(iReveal)
   //Create P element and append to cardReveal
   let revealContent = document.createElement('p')
   revealContent.innerText = 'Here is some more information about this product that is only revealed once clicked on.'
