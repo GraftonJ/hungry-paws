@@ -16,9 +16,29 @@ document.addEventListener('DOMContentLoaded', (event) => {
     .then((response) => {
       //clear the results cards if there are any
       document.getElementById('cardArea').innerHTML = ''
+      //If zero results. append picture and say no results found
+      if (response.data.status === 'ZERO_RESULTS') {
+        let noResultText = document.createElement('h2')
+        noResultText.innerText = "No Results Found. Sad Puppy"
+        noResultText.className = 'center-align'
+        document.getElementById('cardArea').appendChild(noResultText)
+        let noResultImage = document.createElement('img')
+        noResultImage.className = 'hoverable responsive-img col s12 m6 l6 offset-l3 offset-m3'
+        noResultImage.src = 'https://images.unsplash.com/photo-1511028897949-27b3f9f7924d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=733f5aebb3875c354a9df219e1fcb944&auto=format&fit=crop&w=724&q=80'
+        document.getElementById('cardArea').appendChild(noResultImage)
+      }
       //Loop through results and find the names of the restaurants, pictures, and address and create a materialize card for each one
       response.data.results.forEach(createResultCard)
       function createResultCard(result) {
+        //Determine if business is open or closed at the moment
+        let openNow = ''
+        if(result.opening_hours.open_now === true) {
+          openNow = 'Open Now'
+        }
+        else {
+          openNow = 'Currently Closed'
+        }
+        //Set reference to pull in a photo of the business
         let photoReference = result.photos[0]['photo_reference']
         //Create responsive card divider. Append to card area
         let responsiveDiv = document.createElement('div')
@@ -64,10 +84,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let cardReveal = document.createElement('div')
         cardReveal.className = 'card-reveal'
         cardContainer.appendChild(cardReveal)
-        //PENDING: Create span and append to cardReveal
+        //Create span and append to cardReveal
         let revealSpan = document.createElement('span')
         revealSpan.className = 'card-title activator grey-text text-darken-4'
-        revealSpan.innerText = 'Card Title'
+        revealSpan.innerText = 'More Info'
         cardReveal.appendChild(revealSpan)
         let iReveal = document.createElement('i')
         iReveal.className = "material-icons right"
@@ -75,7 +95,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         revealSpan.appendChild(iReveal)
         //Create P element and append to cardReveal
         let revealContent = document.createElement('p')
-        revealContent.innerText = 'Here is some more information about this product that is only revealed once clicked on.'
+        revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: $$ <br> Address: ${result.formatted_address}`
         cardReveal.appendChild(revealContent)
       }
     })
