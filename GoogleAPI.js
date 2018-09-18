@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   //Step 1: fetch some data from a server.
   let location = 'Boulder, CO, USA'
-  //let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+  let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
   axios.get(url)
     .then((response) => {
   //Step 2: Log Data and see what you are getting back as a response
