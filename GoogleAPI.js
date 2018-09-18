@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   button.addEventListener('click', function(event) {
     event.preventDefault()
     let location = document.getElementById('location').value
-    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+parks+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
     axios.get(url)
       .then((response) => {
         //clear the results cards if there are any
