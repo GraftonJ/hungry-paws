@@ -12,14 +12,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log(location);
     let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
     console.log(url);
-
   axios.get(url)
     .then((response) => {
-      //Step 2: Log Data and see what you are getting back as a response
-      //Loops through results and finds the names of the restaurants
-      console.log(response.data.results);
+      //clear the results cards if there are any
+      document.getElementById('cardArea').innerHTML = ''
+      //Loop through results and find the names of the restaurants, pictures, and address and create a materialize card for each one
       response.data.results.forEach(createResultCard)
-
       function createResultCard(result) {
         let photoReference = result.photos[0]['photo_reference']
         //Create responsive card divider. Append to card area
