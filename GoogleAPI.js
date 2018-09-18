@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let button = document.getElementById('submit')
   button.addEventListener('click', function(event) {
     event.preventDefault()
-    let location = 'Boulder, CO, USA'
+    let location = document.getElementById('location').value
+    console.log(location);
     let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+    console.log(url);
 
   axios.get(url)
     .then((response) => {
