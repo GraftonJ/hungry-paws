@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //Step 0: Ensure event listener works
 
   //Step 1: fetch some data from a server.
-  let location = 'boulder'
+  let location = 'lakeland'
   let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
   axios.get(url)
     .then((response) => {
@@ -16,12 +16,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       function createResultCard(result) {
         let photoReference = result.photos[0]['photo_reference']
+        //Create responsive card divider. Append to card area
+        let responsiveDiv = document.createElement('div')
+        responsiveDiv.className = 'col s12 m4 l4'
+        let cardArea = document.getElementById('cardArea')
+        cardArea.appendChild(responsiveDiv)
         //Create top-level card div
         let cardContainer = document.createElement('div')
-        cardContainer.className = "card"
-        //Append the card div to the cardArea
-        let cardArea = document.getElementById('cardArea')
-        cardArea.appendChild(cardContainer)
+        cardContainer.className = "card medium"
+        //Append the card div to the responsiveDiv
+        responsiveDiv.appendChild(cardContainer)
         //Create card image div
         let cardImage = document.createElement('div')
         cardImage.className = "card-image waves-effect waves-block waves-light"
@@ -29,8 +33,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         cardContainer.appendChild(cardImage)
         //Create image tag with class and source
         let image = document.createElement('img')
-        image.className = 'activator'
-        image.src = `https://maps.googleapis.com/maps/api/place/photo?maxheight=700&photoreference=${photoReference}&key=${apiKey}`
+        image.className = 'activator responsive-img'
+        image.src = `https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}`
         //Append the image to the cardImage
         cardImage.appendChild(image)
         //create card-content div
