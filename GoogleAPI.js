@@ -5,11 +5,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //Step 0: Ensure event listener works
 
   //Step 1: fetch some data from a server.
-  let location = 'Boulder, CO, USA'
-  let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+  let button = document.getElementById('submit')
+  button.addEventListener('click', function(event) {
+    event.preventDefault()
+    let location = 'Boulder, CO, USA'
+    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+
   axios.get(url)
     .then((response) => {
-  //Step 2: Log Data and see what you are getting back as a response
+      //Step 2: Log Data and see what you are getting back as a response
       //Loops through results and finds the names of the restaurants
       console.log(response.data.results);
       response.data.results.forEach(createResultCard)
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         cardReveal.appendChild(revealContent)
       }
     })
+  })
 })
 
 //https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&photoreference=CmRaAAAAwduffRfO922yJkTuX-hrZEOWkSDUkh9qM7kjaHEjl_s_Yah7fH9tC-2SRaCr8bSkQ39HOfRxYSbHMQotJsjpArEo6nN5kIo3kqpSJ6HRfFTSxOaZeLBX5sNQg8uwKL1MEhCVYpYzz6MiiM07V4O4Ue1KGhTHG2gbTSgY2L_rNbiESVN9k02w4g&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
