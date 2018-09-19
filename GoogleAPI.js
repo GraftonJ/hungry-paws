@@ -2,19 +2,9 @@
 // https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+boulder&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
 document.addEventListener('DOMContentLoaded', (event) => {
-  //Set value for search only open now Results
-
-    let checkbox = document.getElementById('checkbox')
-    checkbox.addEventListener('click', function() {
-      if (checkbox.value === 'on') {
-        checkbox.setAttribute('value', 'off')
-      }
-      else {
-        checkbox.setAttribute('value', 'on')
-      }
-    })
   //Find the price level of the restaurant
   let price = ''
+
   function priceLevel(location) {
     switch (location.price_level) {
       case undefined:
@@ -40,6 +30,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   //Determine if business is open or closed at time of Search
   let openNow = ''
+
   function openClosed(location) {
     if (location.opening_hours.open_now === true) {
       openNow = 'Open Now'
@@ -55,7 +46,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault()
     let location = document.getElementById('location').value
     let placeType = document.getElementById('placeType').value
-    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+      url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=${apiKey}`
+
     axios.get(url)
       .then((response) => {
         //clear the results cards if there are any
@@ -80,6 +72,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
           openClosed(result)
           //Determine Price of the restuarant
           priceLevel(result)
+          //Set variable for the title of the Location
+          let name = result.name
           //Set reference to pull in a photo of the business
           let photoReference = result.photos[0]['photo_reference']
           //Create responsive card divider. Append to card area
@@ -137,7 +131,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           revealSpan.appendChild(iReveal)
           //Create P element and append to cardReveal
           let revealContent = document.createElement('p')
-          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: ${result.formatted_address}`
+          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}" target="_blank">${result.formatted_address}</a>`
           cardReveal.appendChild(revealContent)
         }
       })
