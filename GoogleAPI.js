@@ -2,6 +2,12 @@
 // https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+boulder&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
 document.addEventListener('DOMContentLoaded', (event) => {
+  //Find the price level of the restaurant
+  function priceLevel (location) {
+    if (location ) {
+      console.log(location.price_level);
+    }
+  }
   //Initializes Materialize Javascript effects
   M.AutoInit();
   //Step 1: fetch some data from a server when the user clicks submit
@@ -26,10 +32,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
           noResultImage.src = 'https://images.unsplash.com/photo-1511028897949-27b3f9f7924d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=733f5aebb3875c354a9df219e1fcb944&auto=format&fit=crop&w=724&q=80'
           document.getElementById('cardArea').appendChild(noResultImage)
         }
+
         //Loop through results and find the names of the restaurants, pictures, and address and create a materialize card for each one
         response.data.results.forEach(createResultCard)
 
         function createResultCard(result) {
+          priceLevel(result)
+
           //Determine if business is open or closed at the moment
           let openNow = ''
           if (result.opening_hours.open_now === true) {
@@ -37,6 +46,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           } else {
             openNow = 'Currently Closed'
           }
+          //Determine Price of the restuarant
           //Set reference to pull in a photo of the business
           let photoReference = result.photos[0]['photo_reference']
           //Create responsive card divider. Append to card area
