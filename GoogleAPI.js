@@ -2,6 +2,17 @@
 // https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+boulder&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
 document.addEventListener('DOMContentLoaded', (event) => {
+  //Set value for search only open now Results
+
+    let checkbox = document.getElementById('checkbox')
+    checkbox.addEventListener('click', function() {
+      if (checkbox.value === 'on') {
+        checkbox.setAttribute('value', 'off')
+      }
+      else {
+        checkbox.setAttribute('value', 'on')
+      }
+    })
   //Find the price level of the restaurant
   let price = ''
   function priceLevel(location) {
