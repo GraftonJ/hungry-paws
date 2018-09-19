@@ -7,25 +7,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
   function priceLevel(location) {
     switch (location.price_level) {
       case undefined:
-        price = 'no price info';
+        price = 'No price info';
         break;
       case 0:
         price = 'Free';
         break;
       case 1:
-        price = 'Inexpensive';
+        price = '$';
         break;
       case 2:
-        price = 'Moderate';
+        price = '$$';
         break;
       case 3:
-        price = 'Expensive';
+        price = '$$$';
         break;
       case 4:
-        price = 'Very Expensive';
+        price = '$$$$';
         break;
     }
-    console.log(price)
   }
 //Determine if business is open or closed at time of Search
 let openNow = ''
@@ -70,6 +69,7 @@ button.addEventListener('click', function(event) {
         //Determine if business is open or closed at the moment
         openClosed(result)
         //Determine Price of the restuarant
+        priceLevel(result)
         //Set reference to pull in a photo of the business
         let photoReference = result.photos[0]['photo_reference']
         //Create responsive card divider. Append to card area
@@ -128,7 +128,7 @@ button.addEventListener('click', function(event) {
         revealSpan.appendChild(iReveal)
         //Create P element and append to cardReveal
         let revealContent = document.createElement('p')
-        revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: $$ <br> Address: ${result.formatted_address}`
+        revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: ${result.formatted_address}`
         cardReveal.appendChild(revealContent)
       }
     })
