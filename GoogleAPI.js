@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           revealSpan.appendChild(iReveal)
           //Create P element and append to cardReveal
           let revealContent = document.createElement('p')
-          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
+          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating}/5 <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
           cardReveal.appendChild(revealContent)
         }
       })
