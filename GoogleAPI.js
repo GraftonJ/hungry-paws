@@ -2,14 +2,15 @@
 // https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+restaurants+boulder&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
 document.addEventListener('DOMContentLoaded', (event) => {
-  //Step 0: Ensure event listener works
-
-  //Step 1: fetch some data from a server.
+  //Initializes Materialize Javascript effects
+  M.AutoInit();
+  //Step 1: fetch some data from a server when the user clicks submit
   let button = document.getElementById('submit')
   button.addEventListener('click', function(event) {
     event.preventDefault()
     let location = document.getElementById('location').value
-    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+parks+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
+    let placeType = document.getElementById('placeType').value
+    let url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI`
     axios.get(url)
       .then((response) => {
         //clear the results cards if there are any
