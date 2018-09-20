@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         function createResultCard(result) {
           //Determine if business is open or closed at the moment
-          let openClosed = openClosed(location.opening_hours.open_now)
+          let checkOpen = openClosed(result.opening_hours.open_now)
           //Determine Price of the restuarant
           let price = priceLevel(result.price_level)
           //Set variable for the title of the Location
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           contentSpan.appendChild(iContent)
           // //create p tag with link and append to card-content divider
           let resultLink = document.createElement('p')
-          resultLink.innerHTML = `Price: ${price}<br>Rating: ${result.rating}<br>${openNow}`
+          resultLink.innerHTML = `Price: ${price}<br>Rating: ${result.rating}<br>${checkOpen}`
           cardContent.appendChild(resultLink)
 
           //Create card-reveal div and append to cardContainer
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           revealSpan.appendChild(iReveal)
           //Create P element and append to cardReveal
           let revealContent = document.createElement('p')
-          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
+          revealContent.innerHTML = `${checkOpen} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
           cardReveal.appendChild(revealContent)
         }
       })
