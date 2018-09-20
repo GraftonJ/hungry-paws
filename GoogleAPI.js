@@ -77,67 +77,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
           let checkOpen = openClosed(result.opening_hours.open_now)
           //Determine Price of the restuarant
           let price = priceLevel(result.price_level)
-          //Set variable for the title of the Location
-          let name = result.name
           //Set reference to pull in a photo of the business
           let photoReference = result.photos[0]['photo_reference']
-          //Create responsive card divider. Append to card area
-          let responsiveDiv = document.createElement('div')
-          responsiveDiv.className = 'col s12 m4 l4'
-          let cardArea = document.getElementById('cardArea')
-          cardArea.appendChild(responsiveDiv)
-          //Create top-level card div
-          let cardContainer = document.createElement('div')
-          cardContainer.className = "card medium"
-          //Append the card div to the responsiveDiv
-          responsiveDiv.appendChild(cardContainer)
-          //Create card image div
-          let cardImage = document.createElement('div')
-          cardImage.className = "card-image waves-effect waves-block waves-light"
-          //Append the card image to the card divider
-          cardContainer.appendChild(cardImage)
-          //Create image tag with class and source
-          let image = document.createElement('img')
-          image.className = 'activator responsive-img'
-          image.src = `https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}`
-          //Append the image to the cardImage
-          cardImage.appendChild(image)
-          //create card-content div
-          let cardContent = document.createElement('div')
-          cardContent.className = 'card-content'
-          //Append card-content div to cardContainer div
-          cardContainer.appendChild(cardContent)
-          //Create Span and append to the card-content div. Create i tag and append to contentSpan
-          let contentSpan = document.createElement('span')
-          contentSpan.className = 'card-title activator grey-text text-darken-4'
-          contentSpan.innerText = result.name
-          cardContent.appendChild(contentSpan)
-          let iContent = document.createElement('i')
-          iContent.className = "material-icons right"
-          iContent.innerText = 'more_vert'
-          contentSpan.appendChild(iContent)
-          // //create p tag with link and append to card-content divider
-          let resultLink = document.createElement('p')
-          resultLink.innerHTML = `Price: ${price}<br>Rating: ${result.rating}<br>${checkOpen}`
-          cardContent.appendChild(resultLink)
 
-          //Create card-reveal div and append to cardContainer
-          let cardReveal = document.createElement('div')
-          cardReveal.className = 'card-reveal'
-          cardContainer.appendChild(cardReveal)
-          //Create span and append to cardReveal
-          let revealSpan = document.createElement('span')
-          revealSpan.className = 'card-title activator grey-text text-darken-4'
-          revealSpan.innerText = 'More Info'
-          cardReveal.appendChild(revealSpan)
-          let iReveal = document.createElement('i')
-          iReveal.className = "material-icons right"
-          iReveal.innerText = 'close'
-          revealSpan.appendChild(iReveal)
-          //Create P element and append to cardReveal
-          let revealContent = document.createElement('p')
-          revealContent.innerHTML = `${checkOpen} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
-          cardReveal.appendChild(revealContent)
+          document.getElementById('cardArea').innerHTML += `
+          <div class="col s12 m4 l4">
+            <div class="card medium">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator responsive-img" src="https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">${result.name}<i class="material-icons right">more_vert</i></span>
+                <p>Price: ${price}<br>Rating: ${result.rating}<br>${checkOpen}</p>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">More Info<i class="material-icons right">close</i></span>
+                <p>${checkOpen} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a></p>
+              </div>
+            </div>
+          </div>`
         }
       })
   })
