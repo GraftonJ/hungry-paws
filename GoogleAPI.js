@@ -40,13 +40,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
   //Initializes Materialize Javascript effects
   M.AutoInit();
-
+  //Use Local storage to set the search location to the last search
+  document.getElementById('location').value = localStorage.getItem('location') || ''
   //Step 1: fetch some data from a server when the user clicks submit
   let button = document.getElementById('submit')
+
+  //Button Click Event
   button.addEventListener('click', function(event) {
     event.preventDefault()
+    //Set local storage of search location
+    localStorage.setItem('location', document.getElementById('location').value)
     let location = document.getElementById('location').value
     console.log(location);
+    //Set local storage of place type
     let placeType = document.getElementById('placeType').value
       url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=${apiKey}`
 
