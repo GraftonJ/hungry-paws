@@ -1,41 +1,40 @@
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
+//Find the price level of the restaurant
+let price = ''
+function priceLevel(location) {
+  switch (location.price_level) {
+    case undefined:
+      price = 'No price info';
+      break;
+    case 0:
+      price = 'Free';
+      break;
+    case 1:
+      price = '$';
+      break;
+    case 2:
+      price = '$$';
+      break;
+    case 3:
+      price = '$$$';
+      break;
+    case 4:
+      price = '$$$$';
+      break;
+  }
+}
+
+//Determine if business is open or closed at time of Search
+let openNow = ''
+function openClosed(location) {
+  if (location.opening_hours.open_now === true) {
+    openNow = 'Open Now'
+  } else {
+    openNow = 'Currently Closed'
+  }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
-  //Find the price level of the restaurant
-  let price = ''
-
-  function priceLevel(location) {
-    switch (location.price_level) {
-      case undefined:
-        price = 'No price info';
-        break;
-      case 0:
-        price = 'Free';
-        break;
-      case 1:
-        price = '$';
-        break;
-      case 2:
-        price = '$$';
-        break;
-      case 3:
-        price = '$$$';
-        break;
-      case 4:
-        price = '$$$$';
-        break;
-    }
-  }
-
-  //Determine if business is open or closed at time of Search
-  let openNow = ''
-
-  function openClosed(location) {
-    if (location.opening_hours.open_now === true) {
-      openNow = 'Open Now'
-    } else {
-      openNow = 'Currently Closed'
-    }
-  }
   //Initializes Materialize Javascript effects
   M.AutoInit();
   //Use Local storage to set the search location to the last search
