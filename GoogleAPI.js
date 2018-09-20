@@ -8,11 +8,12 @@ function createResultCard(result) {
   let price = priceLevel(result.price_level)
   //Set reference to pull in a photo of the business
   let photoReference = result.photos[0]['photo_reference']
+
   document.getElementById('cardArea').innerHTML += `
   <div class="col s12 m4 l4">
     <div class="card medium">
       <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator responsive-img" src="https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}">
+        <img class="activator" src="https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}">
       </div>
       <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">${result.name}<i class="material-icons right">more_vert</i></span>
@@ -24,7 +25,6 @@ function createResultCard(result) {
       </div>
     </div>
   </div>`
-
 }
 
 //Find the price level of the restaurant
