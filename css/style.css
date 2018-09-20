@@ -1,4 +1,9 @@
 p {
+  color: #37474f;
+  font-family: trebuchet;
+}
+
+.promo-text {
   font-family: trebuchet;
   font-size: 20px;
   color: #37474f;
@@ -7,4 +12,9 @@ p {
 h2 {
   font-family: trebuchet;
   color: #37474f;
+}
+
+.card-title {
+  color: #37474f;
+  font-family: trebuchet;
 }
