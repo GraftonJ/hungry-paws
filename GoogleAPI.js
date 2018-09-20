@@ -1,4 +1,5 @@
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
+
 //Find the price level of the restaurant
 let price = ''
 function priceLevel(location) {
