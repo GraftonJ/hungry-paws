@@ -40,11 +40,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
   //Initializes Materialize Javascript effects
   M.AutoInit();
+
   //Step 1: fetch some data from a server when the user clicks submit
   let button = document.getElementById('submit')
   button.addEventListener('click', function(event) {
     event.preventDefault()
     let location = document.getElementById('location').value
+    console.log(location);
     let placeType = document.getElementById('placeType').value
       url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=${apiKey}`
 
