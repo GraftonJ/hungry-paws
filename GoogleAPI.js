@@ -35,18 +35,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (location.opening_hours.open_now === true) {
       openNow = 'Open Now'
     } else {
-      openNow = ''
+      openNow = 'Currently Closed'
     }
   }
   //Initializes Materialize Javascript effects
   M.AutoInit();
   //Step 1: fetch some data from a server when the user clicks submit
   let button = document.getElementById('submit')
-  button.addEventListener('mousedown', function(event) {
+  button.addEventListener('click', function(event) {
     event.preventDefault()
     let location = document.getElementById('location').value
     let placeType = document.getElementById('placeType').value
-    url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=${apiKey}`
+      url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog+friendly+${placeType}+${location}&key=${apiKey}`
 
     axios.get(url)
       .then((response) => {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           let photoReference = result.photos[0]['photo_reference']
           //Create responsive card divider. Append to card area
           let responsiveDiv = document.createElement('div')
-          responsiveDiv.className = 'col s12 m6 l4'
+          responsiveDiv.className = 'col s12 m4 l4'
           let cardArea = document.getElementById('cardArea')
           cardArea.appendChild(responsiveDiv)
           //Create top-level card div
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           revealSpan.appendChild(iReveal)
           //Create P element and append to cardReveal
           let revealContent = document.createElement('p')
-          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating}/5 <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
+          revealContent.innerHTML = `${openNow} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a>`
           cardReveal.appendChild(revealContent)
         }
       })
