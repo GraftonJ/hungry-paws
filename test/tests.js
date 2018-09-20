@@ -12,14 +12,20 @@ describe('test priceLevel', () => {
     expect(priceLevel).to.be.a("function")
   })
   it('does it return the correct output', () => {
-    expect(priceLevel()).to.equal(Free)
+    expect(priceLevel(0)).to.equal('Free')
   })
 })
 
-//Test to see if priceLevel is a function
+//Test to see if openClosed is a function
 describe('test openClosed', () => {
   it('openClosed exist', () => {
     expect(openClosed).to.be.a("function")
+    })
+    it('does it return currently closed if closed', () => {
+      expect(openClosed(false)).to.equal('Currently Closed')
+    })
+    it('does it return open if open', () => {
+      expect(openClosed(true)).to.equal('Open Now')
     })
   })
 

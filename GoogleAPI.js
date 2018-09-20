@@ -1,37 +1,36 @@
 const apiKey = 'AIzaSyC9G5N9yXiqKofp4G21tb-D_QN8bAvgXDI'
 
 //Find the price level of the restaurant
-let price = ''
-function priceLevel(location) {
-  switch (location.price_level) {
+
+function priceLevel(price) {
+  switch (price) {
     case undefined:
-      price = 'No price info';
+      return 'No price info';
       break;
     case 0:
-      price = 'Free';
+      return 'Free';
       break;
     case 1:
-      price = '$';
+      return '$';
       break;
     case 2:
-      price = '$$';
+      return '$$';
       break;
     case 3:
-      price = '$$$';
+      return '$$$';
       break;
     case 4:
-      price = '$$$$';
+      return '$$$$';
       break;
   }
 }
 
 //Determine if business is open or closed at time of Search
-let openNow = ''
-function openClosed(location) {
-  if (location.opening_hours.open_now === true) {
-    openNow = 'Open Now'
+function openClosed(open) {
+  if (open) {
+    return 'Open Now'
   } else {
-    openNow = 'Currently Closed'
+    return 'Currently Closed'
   }
 }
 
@@ -75,9 +74,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         function createResultCard(result) {
           //Determine if business is open or closed at the moment
-          openClosed(result)
+          let openClosed = openClosed(location.opening_hours.open_now)
           //Determine Price of the restuarant
-          priceLevel(result)
+          let price = priceLevel(result.price_level)
           //Set variable for the title of the Location
           let name = result.name
           //Set reference to pull in a photo of the business
