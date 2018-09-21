@@ -21,7 +21,7 @@ function createResultCard(result) {
       </div>
       <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">More Info<i class="material-icons right">close</i></span>
-        <p>${checkOpen} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://galvanize-cors.herokuapp.com/https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a></p>
+        <p>${checkOpen} <br> Rating : ${result.rating} <br> Price: ${price} <br> Address: <a href="https://www.google.com/maps/search/?api=1&query=${result.name}+${result.formatted_address}" target="_blank">${result.formatted_address}</a></p>
       </div>
     </div>
   </div>`
