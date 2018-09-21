@@ -10,7 +10,7 @@ function createResultCard(result) {
   let photoReference = result.photos[0]['photo_reference']
 
   document.getElementById('cardArea').innerHTML += `
-  <div class="col s12 m4 l4">
+  <div class="col s12 m6 l4">
     <div class="card medium">
       <div class="card-image waves-effect waves-block waves-light">
         <img class="activator" src="https://maps.googleapis.com/maps/api/place/photo?maxheight=1000&maxwidth=1000&photoreference=${photoReference}&key=${apiKey}">
