@@ -2,5 +2,5 @@
 
 spotCheck is an application to help find dog friendly restaurants, hotels, parks, or veterinarians.
 
-![/screenshots/View 1]
+![HomeScreen](/screenshots/view_1.png)
 
